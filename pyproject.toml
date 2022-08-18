@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "simple-syslogn"
+version = "0.1.0"
+license = "Apache-2.0"
+description = "A python 3 library for parsing valid RFC 5324 and RFC 3164 syslog"
+authors = ["Otto Fowler <ottobackwards@gmail.com>"]
+maintainers = ["palindromicity <github.palindromicity@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/palindromicity/simple-syslog-python"
+repository = "https://github.com/palindromicity/simple-syslog-python"
+keywords = ["syslog", "RFC 5424", "RFC 3164", "simple-syslog"]
+
+[tool.poetry.urls]
+issues = "https://github.com/palindromicity/simple-syslog-python/issues"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
