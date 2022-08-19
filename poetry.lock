@@ -137,6 +137,20 @@ pytest = ">=4.6"
 testing = ["virtualenv", "pytest-xdist", "six", "process-tests", "hunter", "fields"]
 
 [[package]]
+name = "pytest-mock"
+version = "3.8.2"
+description = "Thin-wrapper around the mock package for easier use with pytest"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+pytest = ">=5.0"
+
+[package.extras]
+dev = ["pytest-asyncio", "tox", "pre-commit"]
+
+[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -147,7 +161,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "12d6b5d08e3bde82275d153d695ea4293dee71b3db0c1e26e6b48f4b24ac1730"
+content-hash = "b43293dd5f46b60c044a7706f10754b9cf6dec0c7c4cd0b9888f3767a0d727ab"
 
 [metadata.files]
 antlr4-python3-runtime = []
@@ -162,4 +176,5 @@ py = []
 pyparsing = []
 pytest = []
 pytest-cov = []
+pytest-mock = []
 tomli = []
