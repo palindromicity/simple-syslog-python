@@ -1,0 +1,6 @@
+[flake8]
+select = C,E,F,W
+max-complexity = 10
+
+exclude =
+    generated,
