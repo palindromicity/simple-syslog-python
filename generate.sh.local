@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 # generate the lexers, parsers, taokens etc
-# this assumes that antlr4 is installed and in the path
+# replace the  java -jar statement with what you need and rename this file by removing the local
+# it will be ignored by git so you have your local script version
 CUR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 cd "$CUR_DIR"/simple_syslog || exit
