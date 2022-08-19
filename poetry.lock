@@ -170,6 +170,24 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "mypy"
+version = "0.971"
+description = "Optional static typing for Python"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+mypy-extensions = ">=0.4.3"
+tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
+typing-extensions = ">=3.10"
+
+[package.extras]
+reports = ["lxml"]
+python2 = ["typed-ast (>=1.4.0,<2)"]
+dmypy = ["psutil (>=4.0)"]
+
+[[package]]
 name = "mypy-extensions"
 version = "0.4.3"
 description = "Experimental type system extensions for programs checked with the mypy typechecker."
@@ -332,7 +350,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "b0ed49239af61df21960e5b996bde48446f7fc67aac15f0db64990e30d101d1f"
+content-hash = "b29b975f44fb13943fdc6e4f457bcb30784e7f0adfdb43ddd83d3068cfc00670"
 
 [metadata.files]
 antlr4-python3-runtime = []
@@ -349,6 +367,7 @@ flake8-isort = []
 iniconfig = []
 isort = []
 mccabe = []
+mypy = []
 mypy-extensions = []
 packaging = []
 pathspec = []

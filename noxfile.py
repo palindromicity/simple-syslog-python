@@ -3,7 +3,7 @@ from nox_poetry import session
 
 # we by default only want to lint and test
 # we don't want to modify with black
-options.sessions = "lint", "tests"
+options.sessions = "lint", "mypy", "tests"
 locations = "simple_syslog", "tests", "noxfile.py"
 
 
@@ -31,3 +31,10 @@ def black(session):
     args = session.posargs or locations
     session.install("black")
     session.run("black", *args)
+
+
+@session(python=["3.8", "3.9"])
+def mypy(session):
+    args = session.posargs or locations
+    session.install("mypy", ".")
+    session.run("mypy", *args)
