@@ -17,4 +17,3 @@ find generated/grammars -name "*.py" -exec sed -i "" 's/\/\*/\#/g' {} \;
 find generated/grammars -name "*.py" -exec sed -i "" 's/\#\//\#/g' {} \;
 
 cd "$CUR_DIR" || exit
-

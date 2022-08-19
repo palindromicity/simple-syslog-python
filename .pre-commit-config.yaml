@@ -1,0 +1,29 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+        exclude: ^simple_syslog/generated/
+    -   id: trailing-whitespace
+        exclude: ^simple_syslog/generated/
+-   repo: local
+    hooks:
+    -   id: black
+        exclude: ^simple_syslog/generated/
+        name: black
+        entry: poetry run black
+        language: system
+        types: [python]
+    -   id: flake8
+        exclude: ^simple_syslog/generated/
+        name: flake8
+        entry: poetry run flake8
+        language: system
+        types: [ python ]
+    -   id: isort
+        exclude: ^simple_syslog/generated/
+        name: isort (python)
+        entry: poetry run isort
+        language: system
+        types: [ python ]

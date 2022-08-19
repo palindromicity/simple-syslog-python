@@ -1,5 +1,8 @@
 [flake8]
-select = C,E,F,W
+application-import-names = simple_syslog,tests
+select = B,B9,BLK,C,E,F,I,S,W
+ignore = E203,W503,E501
+max-line-length = 88
 max-complexity = 10
 
 exclude =
