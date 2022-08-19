@@ -1,4 +1,6 @@
+# local copy of the generate script ( modified )
 generate.sh
+# jenv
 .java-version
 # Byte-compiled / optimized / DLL files
 __pycache__/
