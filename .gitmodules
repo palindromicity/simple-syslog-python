@@ -1,0 +1,3 @@
+[submodule "simple_syslog/grammars"]
+	path = simple_syslog/grammars
+	url = https://github.com/palindromicity/simple-syslog-grammars.git
