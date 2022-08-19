@@ -1,0 +1,19 @@
+#! /usr/bin/env bash
+# generate the lexers, parsers, taokens etc
+# this assumes that antlr4 is installed and in the path
+CUR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+cd "$CUR_DIR"/simple_syslog || exit
+java -jar /usr/local/Cellar/antlr/4.10.1/antlr-4.10.1-complete.jar -Dlanguage=Python3 grammars/Rfc5424.g4 -listener -o generated
+java -jar /usr/local/Cellar/antlr/4.10.1/antlr-4.10.1-complete.jar -Dlanguage=Python3 grammars/Rfc3164.g4 -listener -o generated
+
+
+# the grammers generate c style license comments, we need
+# to replace them for python
+find generated/grammars -name "*.py" -exec sed -i "" 's/^\/\//#/g' {} \;
+find generated/grammars -name "*.py" -exec sed -i "" 's/^ \*/\#/g' {} \;
+find generated/grammars -name "*.py" -exec sed -i "" 's/\/\*/\#/g' {} \;
+find generated/grammars -name "*.py" -exec sed -i "" 's/\#\//\#/g' {} \;
+
+cd "$CUR_DIR" || exit
+
