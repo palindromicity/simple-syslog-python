@@ -18,7 +18,7 @@ This Nox configuration utilizes nox-poetry for poetry support.
 """
 
 from nox import options
-from nox_poetry import session
+from nox_poetry import Session, session
 
 # we by default only want to lint and test
 # we don't want to modify with black
@@ -28,23 +28,23 @@ package = "simple_syslog"
 
 
 @session(python=["3.8", "3.9"])
-def tests(session) -> None:
+def tests(this_session: Session) -> None:
     """Run the test suite."""
-    args = session.posargs or ["--cov"]
-    session.install("coverage[toml]", ".")
-    session.install("pytest", ".")
-    session.install("pytest-cov", ".")
-    session.install("pytest-mock", ".")
-    session.install("cleo", ".")
-    session.run("poetry", "install", external=True)
-    session.run("pytest", *args, external=True)
+    args = this_session.posargs or ["--cov"]
+    this_session.install("coverage[toml]", ".")
+    this_session.install("pytest", ".")
+    this_session.install("pytest-cov", ".")
+    this_session.install("pytest-mock", ".")
+    this_session.install("cleo", ".")
+    this_session.run("poetry", "install", external=True)
+    this_session.run("pytest", *args, external=True)
 
 
 @session(python=["3.8", "3.9"])
-def lint(session):
+def lint(this_session: Session):
     """Lint using Flake8."""
-    args = session.posargs or locations
-    session.install(
+    args = this_session.posargs or locations
+    this_session.install(
         "black",
         "darglint",
         "flake8",
@@ -53,29 +53,29 @@ def lint(session):
         "flake8-docstrings",
         "flake8-isort",
     )
-    session.run("flake8", *args)
+    this_session.run("flake8", *args)
 
 
 @session(python=["3.8", "3.9"])
-def black(session):
+def black(this_session: Session):
     """Format using Black."""
-    args = session.posargs or locations
-    session.install("black")
-    session.run("black", *args)
+    args = this_session.posargs or locations
+    this_session.install("black")
+    this_session.run("black", *args)
 
 
 @session(python=["3.8", "3.9"])
-def mypy(session):
+def mypy(this_session: Session):
     """Type Checking with mypy."""
-    args = session.posargs or locations
-    session.install("mypy", ".")
-    session.run("mypy", *args)
+    args = this_session.posargs or locations
+    this_session.install("mypy", ".")
+    this_session.run("mypy", *args)
 
 
 @session(python=["3.8", "3.9"])
-def xdoctest(session) -> None:
+def xdoctest(this_session: Session) -> None:
     """Run examples with xdoctest."""
-    args = session.posargs or ["all"]
-    session.run("poetry", "install", "--no-dev", external=True)
-    session.install("xdoctest", ".")
-    session.run("python", "-m", "xdoctest", package, *args)
+    args = this_session.posargs or ["all"]
+    this_session.run("poetry", "install", "--no-dev", external=True)
+    this_session.install("xdoctest", ".")
+    this_session.run("python", "-m", "xdoctest", package, *args)
