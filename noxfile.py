@@ -45,6 +45,7 @@ def lint(session):
     args = session.posargs or locations
     session.install(
         "black",
+        "darglint",
         "flake8",
         "flake8-black",
         "flake8-bugbear",
