@@ -1,3 +1,7 @@
+# local copy of the generate script ( modified )
+generate.sh
+# jenv
+.java-version
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,3 +131,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# idea
+.idea/

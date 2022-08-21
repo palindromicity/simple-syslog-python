@@ -1,0 +1,33 @@
+#! /usr/bin/env bash
+# Copyright 2022 simple-syslog authors
+# All rights reserved.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# generate the lexers, parsers, tokens etc
+# replace the  java -jar statement with what you need and rename this file by removing the local
+# it will be ignored by git so you have your local script version
+CUR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+cd "$CUR_DIR"/simple_syslog || exit
+java -jar /usr/local/Cellar/antlr/4.10.1/antlr-4.10.1-complete.jar -Dlanguage=Python3 grammars/Rfc5424.g4 -listener -o generated
+java -jar /usr/local/Cellar/antlr/4.10.1/antlr-4.10.1-complete.jar -Dlanguage=Python3 grammars/Rfc3164.g4 -listener -o generated
+
+
+# the grammers generate c style license comments, we need
+# to replace them for python
+find generated/grammars -name "*.py" -exec sed -i "" 's/^\/\//#/g' {} \;
+find generated/grammars -name "*.py" -exec sed -i "" 's/^ \*/\#/g' {} \;
+find generated/grammars -name "*.py" -exec sed -i "" 's/\/\*/\#/g' {} \;
+find generated/grammars -name "*.py" -exec sed -i "" 's/\#\//\#/g' {} \;
+
+cd "$CUR_DIR" || exit
