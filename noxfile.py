@@ -23,7 +23,7 @@ from nox_poetry import Session, session
 # we by default only want to lint and test
 # we don't want to modify with black
 options.sessions = "lint", "mypy", "tests"
-locations = "simple_syslog", "tests", "noxfile.py"
+locations = "simple_syslog", "tests", "noxfile.py", "docs/conf.py"
 package = "simple_syslog"
 
 
@@ -79,3 +79,10 @@ def xdoctest(this_session: Session) -> None:
     this_session.run("poetry", "install", "--no-dev", external=True)
     this_session.install("xdoctest", ".")
     this_session.run("python", "-m", "xdoctest", package, *args)
+
+
+@session(python=["3.8"])
+def docs(this_session: Session) -> None:
+    """Build the documentation."""
+    this_session.install("sphinx", ".")
+    this_session.run("sphinx-build", "docs", "docs/_build")
