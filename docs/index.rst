@@ -12,3 +12,9 @@ run this command in your terminal:
 .. code-block:: console
 
    $ pip install simple-syslog
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   license
