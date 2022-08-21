@@ -1,2 +1,14 @@
-This is docs/index.rst,
-documenting the Hypermodern Python project.
+simple-syslog
+==============================
+Description
+
+
+Installation
+------------
+
+To install the Hypermodern Python project,
+run this command in your terminal:
+
+.. code-block:: console
+
+   $ pip install simple-syslog
