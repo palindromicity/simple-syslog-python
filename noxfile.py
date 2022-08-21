@@ -85,4 +85,5 @@ def xdoctest(this_session: Session) -> None:
 def docs(this_session: Session) -> None:
     """Build the documentation."""
     this_session.install("sphinx", ".")
+    this_session.install("sphinx-autodoc-typehints", ".")
     this_session.run("sphinx-build", "docs", "docs/_build")
