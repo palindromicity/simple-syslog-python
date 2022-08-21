@@ -24,6 +24,7 @@ from nox_poetry import session
 # we don't want to modify with black
 options.sessions = "lint", "mypy", "tests"
 locations = "simple_syslog", "tests", "noxfile.py"
+package = "simple_syslog"
 
 
 @session(python=["3.8", "3.9"])
@@ -69,3 +70,12 @@ def mypy(session):
     args = session.posargs or locations
     session.install("mypy", ".")
     session.run("mypy", *args)
+
+
+@session(python=["3.8", "3.9"])
+def xdoctest(session) -> None:
+    """Run examples with xdoctest."""
+    args = session.posargs or ["all"]
+    session.run("poetry", "install", "--no-dev", external=True)
+    session.install("xdoctest", ".")
+    session.run("python", "-m", "xdoctest", package, *args)
