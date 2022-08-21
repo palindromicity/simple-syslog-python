@@ -18,3 +18,4 @@ run this command in your terminal:
    :maxdepth: 1
 
    license
+   reference
