@@ -69,6 +69,7 @@ def mypy(this_session: Session):
     """Type Checking with mypy."""
     args = this_session.posargs or locations
     this_session.install("mypy", ".")
+    this_session.install("pytest", ".")
     this_session.run("mypy", *args)
 
 

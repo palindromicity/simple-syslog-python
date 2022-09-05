@@ -1,29 +1,62 @@
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.3.0
     hooks:
-    -   id: check-yaml
-    -   id: end-of-file-fixer
+      - id: check-yaml
+      - id: end-of-file-fixer
         exclude: ^simple_syslog/generated/
-    -   id: trailing-whitespace
+      - id: trailing-whitespace
         exclude: ^simple_syslog/generated/
--   repo: local
+  - repo: local
     hooks:
-    -   id: black
+      - id: black
         exclude: ^simple_syslog/generated/
         name: black
         entry: poetry run black
         language: system
-        types: [python]
-    -   id: flake8
+        types: [ python ]
+      - id: flake8
         exclude: ^simple_syslog/generated/
         name: flake8
         entry: poetry run flake8
         language: system
         types: [ python ]
-    -   id: isort
+      - id: isort
         exclude: ^simple_syslog/generated/
         name: isort (python)
         entry: poetry run isort
         language: system
         types: [ python ]
+      - id: autoflake
+        name: autoflake
+        types: [ python ]
+        exclude: ^simple_syslog/generated/
+        entry: poetry run autoflake
+        language: system
+
+      - id: poetry-check
+        name: poetry-check
+        description: run poetry check to validate config
+        entry: poetry check
+        language: python
+        language_version: python3
+        pass_filenames: false
+        files: ^pyproject.toml$
+
+      - id: poetry-lock
+        name: poetry-lock
+        description: run poetry lock to update lock file
+        entry: poetry lock
+        language: python
+        language_version: python3
+        pass_filenames: false
+
+      - id: poetry-export
+        name: poetry-export
+        description: run poetry export to sync lock file with requirements.txt
+        entry: poetry export
+        language: python
+        language_version: python3
+        pass_filenames: false
+        files: ^poetry.lock$
+        args: [ "-f", "requirements.txt", "-o", "requirements.txt" ]
